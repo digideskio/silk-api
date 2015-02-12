@@ -29,8 +29,8 @@ class Api {
 
 	public function __construct( $props ) {
 		foreach ( $props as $key => $value ) {
-			if ( isset( Silk::${$key} ) ) {
-				Silk::${$key} = $value;
+			if ( isset( Api::${$key} ) ) {
+				Api::${$key} = $value;
 			}
 		}
 
