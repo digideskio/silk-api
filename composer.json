@@ -1,0 +1,17 @@
+{
+	"name": "owc/silk-api",
+	"description": "PHP integration with Silk API.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "vincentboiardt",
+			"email": "vincent@boiardt.se"
+		}
+	],
+	"require": {
+		"monolog/monolog": "1.11.0"
+	},
+	"autoload": {
+		"classmap": ["src/"]
+	}
+}

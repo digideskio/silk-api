@@ -1,0 +1,15 @@
+# Crap
+.DS_Store
+
+# Editors
+.idea
+*.tmproj
+*.sublime-project
+*.sublime-workspace
+
+# Node
+node_modules
+
+vendor
+composer.lock
+*.log
