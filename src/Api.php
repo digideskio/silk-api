@@ -4,7 +4,7 @@ namespace OWC\Silk;
 use Monolog\Logger,
 	Monolog\Handler\StreamHandler;
 
-class Silk {
+class Api {
 
 	/*
 	|-----------------------------------------------------------
@@ -35,8 +35,8 @@ class Silk {
 		}
 
 		// create a log channel
-		Silk::$log = new Logger( 'silk' );
-		Silk::$log->pushHandler( new StreamHandler( dirname( __FILE__ ) . '/../silk.log', Logger::DEBUG ) );
+		Api::$log = new Logger( 'silk' );
+		Api::$log->pushHandler( new StreamHandler( dirname( __FILE__ ) . '/../silk.log', Logger::DEBUG ) );
 	}
 
 	/*
@@ -46,7 +46,7 @@ class Silk {
 	*/
 
 	public static function get_url( $append = '/' ) {
-		return Silk::$url . $append;
+		return Api::$url . $append;
 	}
 
 	/*
@@ -56,14 +56,14 @@ class Silk {
 	*/
 
 	// generic
-	public static function post( $url, $data = array() )   { return Silk::call_api( 'POST', $url, $data ); }
-	public static function put( $url, $data = array() )    { return Silk::call_api( 'PUT', $url, $data ); }
-	public static function get( $url, $data = array() )    { return Silk::call_api( 'GET', $url, $data ); }
-	public static function delete( $url, $data = array() ) { return Silk::call_api( 'DELETE', $url, $data ); }
+	public static function post( $url, $data = array() )   { return Api::call_api( 'POST', $url, $data ); }
+	public static function put( $url, $data = array() )    { return Api::call_api( 'PUT', $url, $data ); }
+	public static function get( $url, $data = array() )    { return Api::call_api( 'GET', $url, $data ); }
+	public static function delete( $url, $data = array() ) { return Api::call_api( 'DELETE', $url, $data ); }
 
 	// call the Shopify api
 	public static function call_api( $method, $url, $raw_data = array() ) {
-		$url = Silk::get_url( $url );
+		$url = Api::get_url( $url );
 
 		$data = http_build_query( $raw_data );
 		 
@@ -87,14 +87,14 @@ class Silk {
 				break;
 		}
 
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Accept: application/json', 'API-Authorization: ' . Silk::$secret ) );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Accept: application/json', 'API-Authorization: ' . Api::$secret ) );
 		curl_setopt( $ch, CURLOPT_URL, $url );
 		 
 		$response = curl_exec($ch);
 
 		curl_close($ch);
 
-		Silk::$log->addInfo(
+		Api::$log->addInfo(
 			'Silk',
 			compact( 'url', 'method', 'data', 'response' )
 		);
