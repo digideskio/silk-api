@@ -1,4 +1,4 @@
-# OWC: Silk API
+# OWC: Silk API PHP Wrapper
 
 
 ## 2015-03-03, Version 1.0.4
