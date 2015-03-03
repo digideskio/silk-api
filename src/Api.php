@@ -29,8 +29,8 @@ class Api {
 
 	public function __construct( $props ) {
 		foreach ( $props as $key => $value ) {
-			if ( isset( Silk::${$key} ) ) {
-				Silk::${$key} = $value;
+			if ( isset( Api::${$key} ) ) {
+				Api::${$key} = $value;
 			}
 		}
 
@@ -83,7 +83,7 @@ class Api {
 			
 			case 'POST':
 				curl_setopt( $ch, CURLOPT_POST, true );
-				curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
+				curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $raw_data ) );
 				break;
 		}
 
